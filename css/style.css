@@ -13,12 +13,14 @@ body {
     position: relative;
     width: 352px;
     height: 198px;
-    border: 1px solid white;
     margin: 0 auto;
 
     transform: scale(3) translateY(50%);
 }
 
 .game-container canvas {
+    border: 1px solid #ccc;
+    border-radius: 2px;
     image-rendering: pixelated;
+    background-color: #a482b4;
 }
