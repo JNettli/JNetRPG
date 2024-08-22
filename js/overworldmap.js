@@ -21,17 +21,18 @@ window.OverworldMaps = {
     DemoRoom: {
         lowerSrc: "/img/maps/DemoLower.png",
         upperSrc: "/img/maps/DemoUpper.png",
-        gameObjects: [
-            new GameObject({
-                x: 5,
-                y: 6,
+        gameObjects: {
+            hero: new Person({
+              isPlayerControlled: true,
+                x: utils.withGrid(4),
+                y: utils.withGrid(6),
             }),
-            new GameObject({
-                x: 4,
-                y: 4,
+            npc: new Person({
+                x: utils.withGrid(4),
+                y: utils.withGrid(4),
                 src: "/img/char/people/npc1.png",
             }),
-        ],
+      }
     },
     Kitchen: {
         lowerSrc: "/img/maps/KitchenLower.png",
