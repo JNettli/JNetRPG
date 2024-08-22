@@ -14,14 +14,11 @@ body {
     width: 352px;
     height: 198px;
     border: 1px solid white;
-    margin: 20% auto;
+    margin: 0 auto;
+
+    transform: scale(3) translateY(50%);
 }
 
 .game-container canvas {
-    position: absolute;
-    top: 0;
-    left: 0;
-    width: 352px;
-    height: 198px;
-    border: 1px solid #fff;
+    image-rendering: pixelated;
 }
