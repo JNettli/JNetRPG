@@ -12,22 +12,20 @@ class Overworld {
         };
         image.src = 'img/maps/DemoLower.png';
 
-        const shadow = new Image();
-        shadow.onload = () => {
-            this.ctx.drawImage(
-                shadow, 0, 0, 32, 32, x * 16, y * 16, 32, 32
-            );
-        };
-        shadow.src = 'img/char/shadow.png';
+        const hero = new GameObject({
+            x: 5,
+            y: 6,
+        });
 
-        const x = .5;
-        const y = 3;
-        const hero = new Image();
-        hero.onload = () => {
-            this.ctx.drawImage(
-                hero, 0, 0, 32, 32, x * 16, y * 16, 32, 32
-            );
-        };
-        hero.src = 'img/char/people/hero.png';
+        const npc1 = new GameObject({
+            x: 2,
+            y: 4,
+            src: 'img/char/people/npc1.png'
+        });
+
+        setTimeout(() => {
+            hero.sprite.draw(this.ctx);
+            npc1.sprite.draw(this.ctx);
+        }, 200);
     }
 }
