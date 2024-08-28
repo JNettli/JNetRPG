@@ -1,5 +1,16 @@
+:root {
+    --border-color: #291D4D;
+    --dialog-bg: #FFF3b4;
+
+    --menu-bg: #fcfcfc;
+    --menu-border-color:#02020b;
+    --menu-font-color: #02020b;
+    --menu-selected-bg: #7FC2FF;
+}
+
 * {
     box-sizing: border-box;
+    font-family: 'Courier New', Courier, monospace;
 }
 
 body {

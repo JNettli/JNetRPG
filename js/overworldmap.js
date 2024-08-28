@@ -1,8 +1,9 @@
 class OverworldMap {
     constructor(config) {
+        this.overworld = null;
         this.gameObjects = config.gameObjects;
         this.walls = config.walls || {};
-
+        this.cutsceneSpaces = config.cutsceneSpaces || {};
         this.lowerImage = new Image();
         this.lowerImage.src = config.lowerSrc;
 
@@ -47,6 +48,29 @@ class OverworldMap {
             await eventHandler.init();
         }
         this.isCutscenePlaying = false;
+
+        Object.values(this.gameObjects).forEach((object) => {
+            object.doBehaviorEvent(this);
+        });
+    }
+
+    checkForActionCutscene() {
+        const hero = this.gameObjects["hero"];
+        const nextCoords = utils.nextPosition(hero.x, hero.y, hero.direction);
+        const match = Object.values(this.gameObjects).find(object => {
+            return `${object.x}, ${object.y}` === `${nextCoords.x}, ${nextCoords.y}`
+        });
+        if (!this.isCutscenePlaying && match && match.talking.length) {
+            this.startCutscene(match.talking[0].events)
+        }
+    }
+
+    checkForFootstepCutscene() {
+        const hero = this.gameObjects[ "hero" ];
+        const match = this.cutsceneSpaces[ `${hero.x},${hero.y}` ];
+        if(!this.isCutscenePlaying && match) {
+            this.startCutscene(match[0].events);
+        }
     }
 
     addWall(x,y) {
@@ -76,6 +100,13 @@ window.OverworldMaps = {
                 x: utils.withGrid(9),
                 y: utils.withGrid(6),
                 src: "/img/char/people/npc3.png",
+                talking: [
+                    {
+                        events: [
+                            { type: "textMessage", text: "You made it!", faceHero: "npcA" },
+                        ]
+                    }
+                ],
             }),
         },
         walls: {
@@ -94,33 +125,22 @@ window.OverworldMaps = {
                 x: utils.withGrid(4),
                 y: utils.withGrid(6),
             }),
-            npcB: new Person({
-                x: utils.withGrid(10),
-                y: utils.withGrid(6),
-                src: "/img/char/people/npc4.png",
-                behaviorLoop: [
-                    { type: "stand", direction: "down", time: 1000 },
-                    { type: "walk", direction: "left" },
-                    { type: "walk", direction: "left" },
-                    { type: "walk", direction: "up" },
-                    { type: "walk", direction: "up" },
-                    { type: "stand", direction: "up", time: 1500 },
-                    { type: "walk", direction: "down" },
-                    { type: "walk", direction: "down" },
-                    { type: "walk", direction: "right" },
-                    { type: "walk", direction: "right" },
-                ]
-            }),
             npcC: new Person({
                 x: utils.withGrid(10),
                 y: utils.withGrid(8),
                 src: "/img/char/people/npc5.png",
                 behaviorLoop: [
-                    { type: "walk", direction: "left" },
-                    { type: "stand", direction: "up", time: 600 },
-                    { type: "walk", direction: "right" },
-                    { type: "stand", direction: "up", time: 1000 },
                     { type: "stand", direction: "down", time: 1000 },
+                    { type: "stand", direction: "up", time: 600 },
+                ],
+                talking: [
+                    {
+                        events: [
+                            { type: "textMessage", text: "Wow you did it!", faceHero: "npcC" },
+                            { type: "textMessage", text: "Go away now.." },
+                            { who: "hero", type: "walk", direction: "left" },
+                        ]
+                    }
                 ]
             }),
             npcD: new Person({
@@ -183,6 +203,15 @@ window.OverworldMaps = {
 
             [ utils.asGridCoord(9,7) ] : true,
             [ utils.asGridCoord(10,7) ] : true,
+        },
+        cutsceneSpaces: {
+            [ utils.asGridCoord(5,10) ] : [
+                {
+                    events: [
+                        { type: "changeMap", map: "DemoRoom" },
+                    ]
+                }
+            ]
         }
     },
 };
