@@ -17,13 +17,15 @@ class Overworld {
             Object.values(this.map.gameObjects).forEach((object) => {
                 object.update({
                     arrow: this.directionInput.direction,
-                    map: this.map,
+                    map: this.map
                 });
             });
 
             this.map.drawLowerImage(this.ctx, cameraPerson);
             
-            Object.values(this.map.gameObjects).forEach((object) => {
+            Object.values(this.map.gameObjects).sort((a,b) => {
+                return a.y - b.y;
+            }).forEach((object) => {
                 object.sprite.draw(this.ctx, cameraPerson);
             });
 
@@ -37,7 +39,7 @@ class Overworld {
     }
 
     init() {
-        this.map = new OverworldMap(window.OverworldMaps.DemoRoom);
+        this.map = new OverworldMap(window.OverworldMaps.Kitchen);
         this.map.mountObjects();
 
         this.directionInput = new DirectionInput();
@@ -45,5 +47,16 @@ class Overworld {
         this.directionInput.direction;
 
         this.startGameLoop();
+
+        this.map.startCutscene([
+            { who: "hero", type: "walk", direction: "up" },
+            { who: "hero", type: "walk", direction: "down" },
+            { who: "hero", type: "walk", direction: "right" },
+            { who: "hero", type: "walk", direction: "right" },
+            { who: "npcB", type: "stand", direction: "left" },
+            { who: "hero", type: "walk", direction: "right" },
+            { who: "hero", type: "walk", direction: "right" },
+            { who: "hero", type: "walk", direction: "right" },
+        ]);
     }
 }
