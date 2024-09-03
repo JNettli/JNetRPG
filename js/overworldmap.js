@@ -10,7 +10,7 @@ class OverworldMap {
         this.upperImage = new Image();
         this.upperImage.src = config.upperSrc;
 
-        this.isCutscenePlaying = true;
+        this.isCutscenePlaying = false;
     }
 
     drawLowerImage(ctx, cameraPerson) {
@@ -100,10 +100,14 @@ window.OverworldMaps = {
                 x: utils.withGrid(9),
                 y: utils.withGrid(6),
                 src: "/img/char/people/npc3.png",
+                behaviorLoop: [
+                    { type: "stand", direction: "down", time: 1000 },
+                    { type: "stand", direction: "up", time: 600 },
+                ],
                 talking: [
                     {
                         events: [
-                            { type: "textMessage", text: "You made it!", faceHero: "npcA" },
+                            { type: "textMessage", text: "You made it!! Wohooo!", faceHero: "npcA" },
                         ]
                     }
                 ],
@@ -114,6 +118,15 @@ window.OverworldMaps = {
             [utils.asGridCoord(8,6)] : true,
             [utils.asGridCoord(7,7)] : true,
             [utils.asGridCoord(8,7)] : true,
+        },
+        cutsceneSpaces: {
+            [utils.asGridCoord(5,10)] : [
+                {
+                    events: [
+                        { type: "changeMap", map: "Kitchen" },
+                    ]
+                }
+            ]
         }
     },
     Kitchen: {

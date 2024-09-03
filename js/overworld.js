@@ -57,48 +57,29 @@ class Overworld {
         this.map = new OverworldMap(mapConfig);
         this.map.overworld = this;
         this.map.mountObjects();
-    }
 
+    }
+    
     init() {
         this.startMap(window.OverworldMaps.Kitchen);
 
         this.bindActionInput();
         this.bindHeroPositionCheck();
-
+        
         this.directionInput = new DirectionInput();
         this.directionInput.init();
 
         this.startGameLoop();
 
-        this.map.startCutscene([
-            /*{ who: "hero", type: "walk", direction: "up" },
-            { who: "hero", type: "walk", direction: "down" },
-            { who: "hero", type: "walk", direction: "right" },
-            { who: "hero", type: "walk", direction: "right" },
-            { who: "npcB", type: "stand", direction: "left" },
-            { who: "hero", type: "walk", direction: "right" },
-            { who: "hero", type: "walk", direction: "right" },
-            { who: "hero", type: "walk", direction: "right" },
-            { type: "textMessage", text: "Hello, there! You are chef-man! Now get out of my way, I'm making pizzas!" },
-            { who: "hero", type: "walk", direction: "left" },
-            { who: "hero", type: "walk", direction: "left" },
-            { who: "hero", type: "stand", direction: "right", time: 10 },*/
-        ]);
+//        this.map.startCutscene([
+//            { who: "hero", type: "walk", direction: "down" },
+//            { who: "hero", type: "walk", direction: "down" },
+//            { who: "hero", type: "walk", direction: "right" },
+//            { who: "hero", type: "walk", direction: "right" },
+//            { who: "hero", type: "walk", direction: "right" },
+//            { who: "hero", type: "walk", direction: "right" },
+//            { who: "hero", type: "walk", direction: "right" },
+//            { who: "hero", type: "stand", direction: "right", time: 10 },
+//        ]);
     }
 }
-
-function sumSquareDifference(n) {
-    let sumOfSquares = 0;
-    let sum = 0;
-
-    for (let i = 1; i <= n; i++) {
-        sumOfSquares += i * i;
-        sum += i;
-    }
-
-    let squareOfSum = sum * sum;
-    return squareOfSum - sumOfSquares;
-}
-
-const n = 100;
-console.log(sumSquareDifference(n));
