@@ -114,6 +114,49 @@ window.OverworldMaps = {
             }),
         },
         walls: {
+            // Top wall
+            [utils.asGridCoord(1,3)] : true,
+            [utils.asGridCoord(2,3)] : true,
+            [utils.asGridCoord(3,3)] : true,
+            [utils.asGridCoord(4,3)] : true,
+            [utils.asGridCoord(5,3)] : true,
+            [utils.asGridCoord(6,3)] : true,
+            [utils.asGridCoord(6,4)] : true,
+            [utils.asGridCoord(7,2)] : true,
+            [utils.asGridCoord(8,3)] : true,
+            [utils.asGridCoord(8,4)] : true,
+            [utils.asGridCoord(9,3)] : true,
+            [utils.asGridCoord(10,3)] : true,
+
+            // Left wall
+            [utils.asGridCoord(0,4)] : true,
+            [utils.asGridCoord(0,5)] : true,
+            [utils.asGridCoord(0,6)] : true,
+            [utils.asGridCoord(0,7)] : true,
+            [utils.asGridCoord(0,8)] : true,
+            [utils.asGridCoord(0,9)] : true,
+
+            // Right wall
+            [utils.asGridCoord(11,4)] : true,
+            [utils.asGridCoord(11,5)] : true,
+            [utils.asGridCoord(11,6)] : true,
+            [utils.asGridCoord(11,7)] : true,
+            [utils.asGridCoord(11,8)] : true,
+            [utils.asGridCoord(11,9)] : true,
+
+            // Bottom wall
+            [utils.asGridCoord(1,10)] : true,
+            [utils.asGridCoord(2,10)] : true,
+            [utils.asGridCoord(3,10)] : true,
+            [utils.asGridCoord(4,10)] : true,
+            [utils.asGridCoord(5,11)] : true,
+            [utils.asGridCoord(6,10)] : true,
+            [utils.asGridCoord(7,10)] : true,
+            [utils.asGridCoord(8,10)] : true,
+            [utils.asGridCoord(9,10)] : true,
+            [utils.asGridCoord(10,10)] : true,
+
+            // Table
             [utils.asGridCoord(7,6)] : true,
             [utils.asGridCoord(8,6)] : true,
             [utils.asGridCoord(7,7)] : true,
