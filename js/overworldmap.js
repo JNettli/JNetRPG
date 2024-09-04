@@ -2,8 +2,9 @@ class OverworldMap {
     constructor(config) {
         this.overworld = null;
         this.gameObjects = config.gameObjects;
-        this.walls = config.walls || {};
         this.cutsceneSpaces = config.cutsceneSpaces || {};
+        this.walls = config.walls || {};
+
         this.lowerImage = new Image();
         this.lowerImage.src = config.lowerSrc;
 
@@ -22,7 +23,7 @@ class OverworldMap {
     }
 
     isSpaceTaken(currentX, currentY, direction) {
-        const {x, y} = utils.nextPosition(currentX, currentY, direction);
+        const {x,y} = utils.nextPosition(currentX, currentY, direction);
         return this.walls[`${x},${y}`] || false;
     }
 
@@ -42,23 +43,22 @@ class OverworldMap {
         
         for (let i = 0; i < events.length; i++) {
             const eventHandler = new OverworldEvent({ 
+                event: events[i], 
                 map: this, 
-                event: events[i] 
             });
             await eventHandler.init();
         }
         this.isCutscenePlaying = false;
 
-        Object.values(this.gameObjects).forEach((object) => {
-            object.doBehaviorEvent(this);
-        });
+        Object.values(this.gameObjects).forEach(object => 
+            object.doBehaviorEvent(this));
     }
 
     checkForActionCutscene() {
         const hero = this.gameObjects["hero"];
         const nextCoords = utils.nextPosition(hero.x, hero.y, hero.direction);
         const match = Object.values(this.gameObjects).find(object => {
-            return `${object.x}, ${object.y}` === `${nextCoords.x}, ${nextCoords.y}`
+            return `${object.x},${object.y}` === `${nextCoords.x},${nextCoords.y}`
         });
         if (!this.isCutscenePlaying && match && match.talking.length) {
             this.startCutscene(match.talking[0].events)
@@ -81,7 +81,7 @@ class OverworldMap {
     }
     moveWall(wasX,wasY,direction) {
         this.removeWall(wasX, wasY);
-        const {x, y} = utils.nextPosition(wasX, wasY, direction);
+        const {x,y} = utils.nextPosition(wasX, wasY, direction);
         this.addWall(x, y);
     }
 }
@@ -163,13 +163,6 @@ window.OverworldMaps = {
             [utils.asGridCoord(8,7)] : true,
         },
         cutsceneSpaces: {
-            [utils.asGridCoord(5,10)] : [
-                {
-                    events: [
-                        { type: "changeMap", map: "Kitchen" },
-                    ]
-                }
-            ]
         }
     },
     Kitchen: {
@@ -192,9 +185,9 @@ window.OverworldMaps = {
                 talking: [
                     {
                         events: [
-                            { type: "textMessage", text: "Wow you did it!", faceHero: "npcC" },
-                            { type: "textMessage", text: "Go away now.." },
-                            { who: "hero", type: "walk", direction: "left" },
+                            { type: "textMessage", text: "Wow you did it, you disrespectful skibidi toilet surprised Pikachu face :O", faceHero: "npcC" },
+                            { type: "textMessage", text: "Go away now.. :)" },
+                            { type: "textMessage", text: "haha penor lmao" },
                         ]
                     }
                 ]
@@ -208,6 +201,14 @@ window.OverworldMaps = {
                     { type: "stand", direction: "left", time: 1000 },
                     { type: "stand", direction: "down", time: 1000 },
                     { type: "stand", direction: "right", time: 1000 },
+                ],
+                talking: [
+                    {
+
+                        events: [
+                            { type: "textMessage", text: "your're moma gey haha", faceHero: "npcD" },
+                        ]
+                    }
                 ]
             }),
         },

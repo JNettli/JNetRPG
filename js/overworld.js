@@ -3,6 +3,7 @@ class Overworld {
         this.element = config.element;
         this.canvas = this.element.querySelector(".game-canvas");
         this.ctx = this.canvas.getContext("2d");
+        this.map = null;
     }
 
     startGameLoop() {
@@ -14,18 +15,18 @@ class Overworld {
             const cameraPerson = this.map.gameObjects.hero;
 
             // Could be unoptimized.
-            Object.values(this.map.gameObjects).forEach((object) => {
+            Object.values(this.map.gameObjects).forEach(object => {
                 object.update({
                     arrow: this.directionInput.direction,
-                    map: this.map
-                });
+                    map: this.map,
+                })
             });
 
             this.map.drawLowerImage(this.ctx, cameraPerson);
             
             Object.values(this.map.gameObjects).sort((a,b) => {
                 return a.y - b.y;
-            }).forEach((object) => {
+            }).forEach(object => {
                 object.sprite.draw(this.ctx, cameraPerson);
             });
 
@@ -71,15 +72,8 @@ class Overworld {
 
         this.startGameLoop();
 
-//        this.map.startCutscene([
-//            { who: "hero", type: "walk", direction: "down" },
-//            { who: "hero", type: "walk", direction: "down" },
-//            { who: "hero", type: "walk", direction: "right" },
-//            { who: "hero", type: "walk", direction: "right" },
-//            { who: "hero", type: "walk", direction: "right" },
-//            { who: "hero", type: "walk", direction: "right" },
-//            { who: "hero", type: "walk", direction: "right" },
-//            { who: "hero", type: "stand", direction: "right", time: 10 },
-//        ]);
+        this.map.startCutscene([
+            { type: "textMessage", text: "Hello, world! I like pizza." }
+        ]);
     }
 }
