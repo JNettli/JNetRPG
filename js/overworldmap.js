@@ -163,6 +163,13 @@ window.OverworldMaps = {
             [utils.asGridCoord(8,7)] : true,
         },
         cutsceneSpaces: {
+            [ utils.asGridCoord(5,10) ] : [
+                {
+                    events: [
+                        { type: "changeMap", map: "Kitchen" },
+                    ]
+                }
+            ]
         }
     },
     Kitchen: {
@@ -197,10 +204,7 @@ window.OverworldMaps = {
                 y: utils.withGrid(4),
                 src: "/img/char/people/erio.png",
                 behaviorLoop: [
-                    { type: "stand", direction: "down", time: 600 },
-                    { type: "stand", direction: "left", time: 1000 },
-                    { type: "stand", direction: "down", time: 1000 },
-                    { type: "stand", direction: "right", time: 1000 },
+                    { type: "stand", direction: "down" },
                 ],
                 talking: [
                     {

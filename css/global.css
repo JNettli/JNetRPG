@@ -28,7 +28,7 @@ body {
     outline: 8px outset darkviolet;
     border-radius: 2px;
 
-    transform: scale(3) translateY(60%);
+    transform: scale(3) translateY(50%);
 }
 
 .game-container canvas {
