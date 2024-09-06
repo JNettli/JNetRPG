@@ -61,9 +61,6 @@ class GameObject {
                 console.log("looping!");
             }
 
-            // Introduce a delay before the next iteration
-            await delay(100); // Delay in milliseconds (e.g., 100ms = 0.1 second)
-
             // Break the loop if the map changes or other conditions are met
             if (map.isCutscenePlaying || this.behaviorLoop.length === 0 || this.isStanding) {
                 break;
@@ -74,7 +71,4 @@ class GameObject {
         this.isBehaviorLoopRunning = false;
     }
     
-}
-function delay(ms) {
-    return new Promise(resolve => setTimeout(resolve, ms));
 }

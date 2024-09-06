@@ -73,6 +73,7 @@ class Overworld {
         this.startGameLoop();
 
         this.map.startCutscene([
+            { type: "battle" },
             { type: "textMessage", text: "Hello, world! I like pizza." }
         ]);
     }

@@ -1,0 +1,129 @@
+.combatant {
+    width: 67px;
+    height: 14px;
+    background: url("/img/ui/SingleMemberDisplay.png") no-repeat no-repeat;
+    position: absolute;
+}
+
+.battle .combatant {
+    transform: scale(2);
+}
+
+.battle .combatant[data-active="false"] {
+    opacity: 0;
+}
+
+.battle .combatant[data-active=""] {
+    opacity: 1;
+}
+
+.combatant[data-team="player"] {
+    left: 46px;
+    top: 70px;
+}
+
+.combatant[data-team="enemy"] {
+    top: 28px;
+    right: 77px;
+}
+
+.combatant_character_crop {
+    position: absolute;
+    bottom: 1px;
+    left: 3px;
+    width: 22px;
+    height: 12px;
+    overflow: hidden;
+}
+
+.combatant_character {
+    display: block;
+    position: absolute;
+    left: -11px;
+    bottom: -7px;
+}
+
+.battle .combatant_character_crop {
+    display: none;
+}
+
+.combatant_name {
+    position: absolute;
+    left: -2px;
+    top: -8px;
+    white-space: nowrap;
+    background: var(--menu-font-color);
+    color: white;
+    font-size: 5px;
+    padding-left: 2px;
+    padding-right: 2px;
+    margin: 0;
+}
+
+.combatant_type {
+    position: absolute;
+    left: 3px;
+    top: -2px;
+    width: 16px;
+    height: 16px;
+}
+
+.combatant_life-container {
+    position: absolute;
+    left: 20px;
+    top: 4px;
+    width: 26px;
+    height: 3px;
+}
+
+.combatant_life-container > rect {
+    transition: width 0.2s;
+}
+
+.combatant_xp-container {
+    position: absolute;
+    left: 20px;
+    top: 8px;
+    width: 26px;
+    height: 2px;
+}
+
+.combatant_level {
+    position: absolute;
+    font-size: 12px;
+    right: 2px;
+    top: -1px;
+    width: 17px;
+    height: 12px;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    background: #F8C594;
+    border: 1px solid #A48465;
+    margin: 0;
+}
+
+.combatant_status[data-status="burn"] {
+    color: red;
+}
+
+.combatant_status[data-status="confused"] {
+    background: #582A79;
+}
+
+.fighter {
+    position: absolute;
+    transform: scale(1);
+    background: url(/img/char/shadow.png) no-repeat no-repeat;
+}
+
+.fighter[data-team="player"] {
+    bottom: 40px;
+    left: 51px;
+    transform: scaleX(-1) scale(1);
+}
+
+.fighter[data-team="enemy"] {
+    top: 58px;
+    right: 80px;
+}
